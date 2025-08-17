@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+import { verifyCommand } from "./commands/verify.js";
 import { Command } from "commander";
 import { cloneCommand } from "./commands/clone.js";
 import { deepCloneCommand } from "./commands/deepClone.js"; // <-- 1. Import the new command
+import { analyzeCommand } from "./commands/analyze.js";
 
 const program = new Command();
 
@@ -32,5 +34,16 @@ program
   .action((url, options) => {
     deepCloneCommand(url, options.output);
   });
-
+program
+  .command("verify")
+  .description(
+    "Verify the integrity of a cloned site (run inside the site folder)"
+  )
+  .option("--broken-links", "Check for broken internal page links")
+  .action(verifyCommand);
+program
+  .command("analyze <url>")
+  .description("Perform SEO (GEO/AEO) analysis on a URL")
+  .option("--output <file>", "Save results to JSON file")
+  .action((url, options) => analyzeCommand(url, options));
 program.parse(process.argv);
