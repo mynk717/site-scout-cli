@@ -1,5 +1,5 @@
-Site Scout CLI
-Site Scout CLI is a powerful Node.js command-line interface designed to help web developers and SEO professionals manage and audit websites efficiently. It provides capabilities to clone modern JavaScript-heavy websites for offline access, thoroughly verify all internal links for broken references, and perform a fundamental SEO audit to identify common optimization opportunities.
+#Site Scout CLI
+A powerful Node.js command-line interface designed to help web developers and SEO professionals manage and audit websites efficiently. It provides capabilities to clone modern JavaScript-heavy websites for offline access, thoroughly verify all internal links for broken references, and perform a fundamental SEO audit to identify common optimization opportunities.
 
 Why Use Site Scout CLI?
 Multi-Pass Crawling: Efficiently navigates and processes complex modern websites, including those rendered by JavaScript.
