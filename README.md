@@ -1,157 +1,95 @@
-```markdown
-# Site Scout CLI
+Site Scout CLI
+Site Scout CLI is a powerful Node.js command-line interface designed to help web developers and SEO professionals manage and audit websites efficiently. It provides capabilities to clone modern JavaScript-heavy websites for offline access, thoroughly verify all internal links for broken references, and perform a fundamental SEO audit to identify common optimization opportunities.
 
-Site Scout CLI is a powerful Node.js command-line tool developed by ChaiCode for cloning modern JavaScript websites offline, verifying internal links for integrity, and performing basic SEO (GEO/AEO) analysis with actionable suggestions.
+Why Use Site Scout CLI?
+Multi-Pass Crawling: Efficiently navigates and processes complex modern websites, including those rendered by JavaScript.
 
-## Features
+Playwright Rendering: Leverages a headless browser (Playwright) to ensure accurate content capture, especially for dynamically loaded pages.
 
-- **Deep Clone**: Multi-pass crawler to mirror websites into browsable offline static sites, handling JS-rendered content.
-- **Verify Links**: Scans cloned sites for broken internal links.
-- **Analyze SEO**: Checks title, meta description, headings, and provides improvement suggestions.
+Automatic Link Rewriting: Cloned sites have internal links automatically adjusted to work seamlessly in an offline environment.
 
-## Installation
+Zero-Install Execution: Get started instantly by running commands directly via npx, with no global installation required.
 
-### Global Usage (No Install Needed)
+Quick SEO Insights: Provides immediate feedback on critical SEO elements like page titles, meta descriptions, and heading structures.
 
-Run commands directly via npx:
-```
+Quick Start
+Run without install (recommended for one-off use)
+You can run Site Scout CLI commands directly using npx without installing it globally:
 
-npx chaicode [options]
+npx site-scout-cli <command> [options]
 
-```
+Global install (optional)
+For frequent use, you might prefer to install Site Scout CLI globally:
 
-### Global Install (For Frequent Use)
-```
+npm install -g site-scout-cli
 
-npm install -g site-scout-chaicode
+Once installed globally, you can run commands directly:
 
-```
-Now run as:
-```
+site-scout-cli <command> [options]
 
-chaicode [options]
+Commands & Usage
+Here are the primary commands available in Site Scout CLI:
 
-```
+Command
 
-## Usage
+Purpose
 
-All commands support help with `--help` (e.g., `chaicode deep-clone --help`).
+Example
 
-### 1. Deep Clone a Site
-Clones the site's pages and assets into a local folder for offline browsing.
+deep-clone <url> --output <folder>
 
-```
+Clones a website, including assets, for offline access.
 
-chaicode deep-clone --output
+npx site-scout-cli deep-clone https://example.com --output ./my-site
 
-```
+verify --broken-links
 
-**Example:**
-```
+Scans the cloned site for broken internal links.
 
-chaicode deep-clone https://piyushgarg.dev --output deep-cloned-site
+npx site-scout-cli verify --broken-links
 
-```
-- This creates a folder `deep-cloned-site` with all pages saved as `.html` files and assets downloaded.
-- Navigate to the folder and serve locally: `npx serve` (open in browser to browse offline).
+analyze <url> --output <file.json>
 
-### 2. Verify Links in Cloned Site
-Checks for broken internal links in the cloned folder. Run this inside the cloned directory.
+Performs a basic SEO audit (title, meta, h-tag check).
 
-```
+npx site-scout-cli analyze https://example.com --output seo-report.json
 
-chaicode verify --broken-links
+Full Workflow Example
+Here's an example of a complete workflow, cloning, verifying, and analyzing https://example.com:
 
-```
+Clone the website:
 
-**Example:**
-```
+npx site-scout-cli deep-clone https://example.com --output ./example-clone
 
-cd deep-cloned-site
-chaicode verify --broken-links
+Verify broken links within the cloned site:
 
-```
-- Output: Lists any broken links or "No broken internal links found!" if all good.
-- Ignores external links, mailto:, anchors (#), etc.
+# Navigate into the cloned directory first
 
-### 3. Analyze SEO of a URL
-Performs basic SEO audit and saves results to JSON.
+cd example-clone
+npx site-scout-cli verify --broken-links
 
-```
+Analyze the original site for SEO elements:
 
-chaicode analyze --output
+npx site-scout-cli analyze https://example.com --output seo-report.json
 
-```
+Development & Contribution
+Want to contribute or run Site Scout CLI locally? Follow these steps:
 
-**Example:**
-```
+Clone the repository:
 
-chaicode analyze https://piyushgarg.dev --output seo_results.json
-
-```
-- Output: Displays title, meta description, H1 count, and suggestions (e.g., "Title should be 10-70 characters").
-- Saves detailed results to the specified JSON file.
-
-## Examples
-
-### Full Workflow
-1. Clone: `chaicode deep-clone https://example.com --output my-site`
-2. Verify: `cd my-site && chaicode verify --broken-links`
-3. Analyze: `chaicode analyze https://example.com --output analysis.json`
-
-### Sample Output (Analyze)
-```
-
-Analyzing SEO for https://piyushgarg.dev...
-SEO Analysis Results:
-
-- Title: Piyush Garg - Software Engineer & Educator
-- Meta Description: Meet Piyush Garg... (truncated)
-- H1 Count: 5
-  Suggestions:
-  - Meta description should be 50-160 characters.
-  - Should have exactly one tag per page.
-    Results saved to seo_results.json
-
-```
-
-## Development
-
-### Setup
-```
-
-git clone https://github.com/mynk717/site-scout-cli.git
+git clone https://github.com/your-username/site-scout-cli.git
 cd site-scout-cli
+
+Install dependencies:
+
 npm install
 
-```
+Run locally:
+You can execute commands using Node directly:
 
-### Run Locally
-```
+node src/index.js deep-clone https://example.com --output ./test-site
 
-node src/index.js [options]
+We welcome contributions! Please feel free to open issues for bugs or feature requests, and submit pull requests following standard code style guidelines.
 
-```
-
-### Testing
-- Manual: Follow the full workflow above and check outputs.
-- Add tests later with Jest (update `scripts.test` in package.json).
-
-## Contribution
-
-1. Fork the repo.
-2. Create a feature branch: `git checkout -b feat/new-feature`
-3. Commit changes: `git commit -m "feat: add new feature"`
-4. Push: `git push origin feat/new-feature`
-5. Open a Pull Request on GitHub.
-
-Follow code style (use Prettier/ESLint) and include tests if possible.
-
-## License
-
+License
 ISC License © 2025 Mayank
-
----
-
-For issues or suggestions, open a GitHub issue.
-```
