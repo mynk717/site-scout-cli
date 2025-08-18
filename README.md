@@ -1,117 +1,101 @@
-`````markdown
+```markdown
 # Site Scout CLI
 
 Site Scout CLI is a powerful Node.js command-line interface designed to help web developers and SEO professionals manage and audit websites efficiently. It provides capabilities to clone modern JavaScript-heavy websites for offline access, thoroughly verify all internal links for broken references, and perform a fundamental SEO audit to identify common optimization opportunities.
+
+1. **Clone** modern JavaScript-heavy websites for full offline access.
+2. **Verify** every internal link to catch broken references.
+3. **Analyze** fundamental SEO elements to spot quick wins.
 
 ---
 
 ## Why Use Site Scout CLI?
 
-- **Multi-Pass Crawling:** Efficiently navigates and processes complex modern websites, including those rendered by JavaScript.
-- **Playwright Rendering:** Leverages a headless browser (Playwright) to ensure accurate content capture, especially for dynamically loaded pages.
-- **Automatic Link Rewriting:** Cloned sites have internal links automatically adjusted to work seamlessly in an offline environment.
-- **Zero-Install Execution:** Get started instantly by running commands directly via `npx`, with no global installation required.
-- **Quick SEO Insights:** Provides immediate feedback on critical SEO elements like page titles, meta descriptions, and heading structures.
+- **Multi-Pass Crawling** – Handles complex, JS-rendered sites.
+- **Playwright Rendering** – Uses a headless browser for 100 % content capture.
+- **Automatic Link Rewriting** – All internal links work offline out of the box.
+- **Zero-Install via npx** – Try it instantly; no global install needed.
+- **Quick SEO Insights** – Checks titles, meta descriptions, H-tags in seconds.
 
 ---
 
 ## Quick Start
 
-### Run without install (recommended for one-off use)
-
-You can run Site Scout CLI commands directly using `npx` without installing it globally:
-
-```bash
-npx site-scout-cli <command> [options]
+### Run without install (recommended)
 ```
-`````
+
+npx chaicode [options]
+
+```
 
 ### Global install (optional)
 
-For frequent use, you might prefer to install Site Scout CLI globally:
-
-```bash
-npm install -g site-scout-cli
 ```
 
-Once installed globally, you can run commands directly:
+npm install -g site-scout-chaicode
+chaicode [options]
 
-```bash
-site-scout-cli <command> [options]
 ```
 
 ---
 
 ## Commands & Usage
 
-Here are the primary commands available in Site Scout CLI:
-
-| Command                              | Purpose                                                 | Example                                                                   |
-| :----------------------------------- | :------------------------------------------------------ | :------------------------------------------------------------------------ |
-| `deep-clone <url> --output <folder>` | Clones a website, including assets, for offline access. | `npx site-scout-cli deep-clone https://example.com --output ./my-site`    |
-| `verify --broken-links`              | Scans the cloned site for broken internal links.        | `npx site-scout-cli verify --broken-links`                                |
-| `analyze <url> --output <file.json>` | Performs a basic SEO audit (title, meta, h-tag check).  | `npx site-scout-cli analyze https://example.com --output seo-report.json` |
+| Command & Options                                   | Purpose                                          | Example                                                                   |
+| --------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------- |
+| `deep-clone  --output `                | Clone a site (pages + assets) for offline use.   | `npx chaicode deep-clone https://example.com --output ./my-site`          |
+| `verify --broken-links` *(run inside clone)*        | Scan cloned HTML for broken internal links.      | `cd my-site && npx chaicode verify --broken-links`                        |
+| `analyze  --output `                | Basic SEO audit (title, meta, headings).         | `npx chaicode analyze https://example.com --output seo-report.json`       |
 
 ---
 
 ## Full Workflow Example
 
-Here's an example of a complete workflow, cloning, verifying, and analyzing `https://example.com`:
+```
 
-1.  **Clone the website:**
+# 1 Clone the website
 
-    ```bash
-    npx site-scout-cli deep-clone [https://example.com](https://example.com) --output ./example-clone
-    ```
+npx chaicode deep-clone https://example.com --output example-clone
 
-2.  **Verify broken links within the cloned site:**
+# 2 Verify broken links
 
-    ```bash
-    # Navigate into the cloned directory first
-    cd example-clone
-    npx site-scout-cli verify --broken-links
-    ```
+cd example-clone
+npx chaicode verify --broken-links
+cd ..
 
-3.  **Analyze the original site for SEO elements:**
+# 3 Analyze original site for SEO
 
-    ```bash
-    npx site-scout-cli analyze [https://example.com](https://example.com) --output seo-report.json
-    ```
+npx chaicode analyze https://example.com --output seo-report.json
+
+```
 
 ---
 
 ## Development & Contribution
 
-Want to contribute or run Site Scout CLI locally? Follow these steps:
+```
 
-1.  **Clone the repository:**
+# Clone the repo
 
-    ```bash
-    git clone [https://github.com/your-username/site-scout-cli.git](https://github.com/your-username/site-scout-cli.git)
-    cd site-scout-cli
-    ```
+git clone https://github.com/mynk717/site-scout-cli.git
+cd site-scout-cli
 
-2.  **Install dependencies:**
+# Install dev dependencies
 
-    ```bash
-    npm install
-    ```
+npm install
 
-3.  **Run locally:**
-    You can execute commands using Node directly:
+# Run CLI locally
 
-    ```bash
-    node src/index.js deep-clone [https://example.com](https://example.com) --output ./test-site
-    ```
+node src/index.js deep-clone https://example.com --output ./test-site
 
-We welcome contributions\! Please feel free to open issues for bugs or feature requests, and submit pull requests following standard code style guidelines.
+```
+
+Contributions are welcome!
+Open issues for bugs or features and submit pull requests following the existing ESLint/Prettier style.
 
 ---
 
 ## License
 
 ISC License © 2025 Mayank
-
-```
-
 ```
